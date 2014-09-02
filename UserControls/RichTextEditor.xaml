@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Gemcom.Klabr.UserControls.RichTextEditor" x:Name="uxRichTextEditor"    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:asis="clr-namespace:Gemcom.Klabr.UserControls" >
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
+                <Setter Property="FontFamily" Value="Palatino Linotype"></Setter>
+                <Setter Property="Width" Value="30"></Setter>
+                <Setter Property="FontSize" Value ="14"></Setter>
+                <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+            </Style>
+
+            <Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
+                <Setter Property="Width" Value="30"></Setter>
+                <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+            </Style>
+        </Grid.Resources>
+
+        <DockPanel Name="mainPanel" >
+            <!-- This tool bar contains all the editing buttons. -->
+            <ToolBar Name="toolbar"  Height="30" DockPanel.Dock="Top" ToolBarTray.IsLocked="True" >
+                <Button Style="{StaticResource formatTextStyle}" Click="PrintCommand" ToolTip="Print" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/Print.ico"></Image>
+                </Button>
+                <Separator Focusable="False" IsTabStop="False" />
+                
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Cut" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/EditCut.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Copy" ToolTip="Copy" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/EditCopy.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Paste" ToolTip="Paste" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/EditPaste.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Undo" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/EditUndo.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Redo" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/EditRedo.png"></Image>
+                </Button>
+                <Separator Focusable="False" IsTabStop="False" />
+
+                <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Bold" IsTabStop="False" Focusable="False">
+                    <TextBlock FontWeight="Bold">B</TextBlock>
+                </Button>
+                <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Italic" IsTabStop="False" Focusable="False">
+                    <TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
+                </Button>
+                <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline" IsTabStop="False" Focusable="False">
+                    <TextBlock TextDecorations="Underline" FontWeight="Bold">U</TextBlock>
+                </Button>
+                <Separator Focusable="False" IsTabStop="False" />
+
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Grow Font" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/fontgrow.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Shrink Font" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/fontshrink.png"></Image>
+                </Button>
+                <Separator Focusable="False" IsTabStop="False" />
+
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ListBullets.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ListNumbers.png"></Image>
+                </Button>
+                <Separator Focusable="False" IsTabStop="False" />
+
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Align Left" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ParagraphLeftJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Align Center" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ParagraphCenterJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Align Right" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ParagraphRightJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Align Justify" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ParagraphFullJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ParagraphIncreaseIndentation.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/ParagraphDecreaseIndentation.png"></Image>
+                </Button>
+                <Separator Focusable="False" IsTabStop="False" />
+
+                <Button Style="{StaticResource formatTextStyle}" Click="ToggleHyperlink" ToolTip="Hyperlink" IsTabStop="False" Focusable="False">
+                    <Image Source="Images/Hyperlink.ico"></Image>
+                </Button>
+            </ToolBar>
+            
+            <Grid >                
+                <RichTextBox Name="mainRTB" AcceptsTab="True" Height="Auto"
+                     asis:RichTextEditorHelper.BoundDocument="{Binding Path=Text, ElementName=uxRichTextEditor}"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"
+                     HorizontalScrollBarVisibility="Auto"
+                     VerticalScrollBarVisibility="Auto" TabIndex="1" />
+            </Grid>
+
+        </DockPanel>
+    </Grid>
+</UserControl>

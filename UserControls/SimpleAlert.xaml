@@ -1,0 +1,11 @@
+﻿<da:DesktopAlertBase x:Class="Gemcom.Klabr.Controls.SimpleAlert"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:da="clr-namespace:Gemcom.Klabr.Controls"
+    Title="SimpleAlert">
+
+    <Grid>
+        <TextBlock FontSize="12" Padding="5" TextWrapping="Wrap"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=Message}"/>
+    </Grid>
+</da:DesktopAlertBase>

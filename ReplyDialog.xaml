@@ -1,0 +1,45 @@
+﻿<Window x:Class="Gemcom.Klabr.ReplyDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="clr-namespace:Gemcom.Klabr.UserControls"
+    Title="Klabr - Replies to Topic" Height="400" Width="800" Icon="/Klabr;component/Images/klabr_icon_48.ico"
+    ShowInTaskbar="False" KeyDown="OnKeyDown">
+
+    <DockPanel Name="mainPanel" LastChildFill="True" >
+        <Grid Name="controlPanel" DockPanel.Dock="Top" Height="60" Background="LightSlateGray" Margin="0,0,0,0" >
+            <Expander Name="expander" VerticalAlignment="Bottom" IsExpanded="True" ToolTip="Collapse all replies"
+                   Expanded="OnExpanded" Collapsed="OnCollapsed" />
+            <Button Name="orderButton" Background="DarkSlateGray" Click="OnOrder"
+                   HorizontalAlignment="Left" Margin="50,17,0,17" Width="106" 
+                    ToolTip="Toggle the order in which replies are displayed" TabIndex="7" BorderThickness="5" BorderBrush="GhostWhite">
+                <Grid Margin="0,0,0,0">
+                    <Image Source="/Images/Down.png" Margin="0,0,0,0" HorizontalAlignment="Left" />
+                    <Label Name="orderLabel" Margin="15,0,0,0" Foreground="White" Height="23" VerticalAlignment="Center">Last to First</Label>
+                </Grid>
+            </Button>
+            <Button Name="replyButton" Height="27" HorizontalAlignment="Right" Margin="0,0,125,0" 
+                   Width="75" IsDefault="False" ToolTip="Add a new reply to this topic" Click="OnReply" TabIndex="2">Reply</Button>
+            <Button Name="closeButton" Height="27" HorizontalAlignment="Right" Margin="0,0,25,0"
+                   ToolTip="Close topic" VerticalAlignment="Center" Width="75" IsCancel="True" Click="OnClose" TabIndex="1">Close</Button>
+            <Button Name="submitButton" Visibility="Hidden" IsDefault="True" Margin="0,16.5,125,0" ToolTip="Submit reply" Click="OnSubmit" TabIndex="4" HorizontalAlignment="Right" Width="75" Height="27" VerticalAlignment="Top">Submit</Button>
+            <Button Name="cancelButton" Visibility="Hidden" Height="27" HorizontalAlignment="Right"
+                   Margin="0,0,25,0" Width="75" ToolTip="Cancel reply" IsDefault="False" Click="OnCancel" TabIndex="5">Cancel</Button>
+        </Grid>
+        
+        <Grid Name="repliesPanel" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="4"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <my:RichTextEditor x:Name="editorTextBox" Grid.Row="0" Height="200" Visibility="Collapsed" TabIndex="3" Focusable="True" IsTabStop="True" />
+            <GridSplitter Name="gridSplitter" Grid.Row="1" Visibility="Collapsed"
+                 ResizeBehavior="PreviousAndNext" Height="4" HorizontalAlignment="Stretch" />
+            <ScrollViewer Grid.Row="2" >
+                <StackPanel x:Name="repliesListView">
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Window>
